@@ -21,13 +21,12 @@ RUN pip install --no-cache-dir \
     urllib3
 
 ENV DUPLICITY_VERSION 0.7.14
-ENV DUPLICITY_URL https://code.launchpad.net/duplicity/0.7-series/$DUPLICITY_VERSION/+download/duplicity-$DUPLICITY_VERSION.tar.gz
+ENV DUPLICITY_URL lp:duplicity/0.7-series
 ENV DUPLY_VERSION 1.11.3
 ENV DUPLY_URL "https://sourceforge.net/projects/ftplicity/files/duply%20%28simple%20duplicity%29/1.11.x/duply_$DUPLY_VERSION.tgz/download"
 
 RUN cd /tmp \
-    && wget $DUPLICITY_URL \
-    && tar xf duplicity-$DUPLICITY_VERSION.tar.gz \
+    && bzr branch $DUPLICITY_URL duplicity-$DUPLICITY_VERSION \
     && cd duplicity-$DUPLICITY_VERSION && python2 setup.py install \
     && cd /tmp \
     && wget "$DUPLY_URL" -O "duply_$DUPLY_VERSION.tgz" \
