@@ -7,7 +7,7 @@ RUN apt-get update \
 
 RUN pip install --no-cache-dir \
     PyDrive \
-    azure-storage \
+    azure-storage==0.20.3 \
     boto \
     fasteners \
     lockfile \
